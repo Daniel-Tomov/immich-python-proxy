@@ -3,3 +3,4 @@ __pycache__
 cert.pem
 key.pem
 gunicorn.pid
+environment.py
