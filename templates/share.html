@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ album_name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta property="og:image" content="http://immich.danieltomov.com/share/photo/{{ share_id }}/{{ album_thumbnail }}/thumbnail"/>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='lg/css/lightgallery-bundle.min.css') }}"/>
+</head>
+<body>
+    <div id="header">
+        <h1>{{ album_name }}</h1>    
+        <h3>{{ album_description }}</h3>    
+        <div id="download-all">
+            <a href="/share/{{ share_id }}/download" title="Download all"><img src="{{ url_for('static', filename='download-all.svg') }}" height="24" width="24" alt="Download all"></a>
+        </div>
+    
+    </div>
+    <div id="lightgallery">
+        {% for item in paths %}{% if item['type'] == 'video' %}<a data-video='{"source":[{"src":"{{ item["video"] }}","type":"video/mp4"}],"attributes":{"playsinline":"playsinline","controls":"controls"}}' data-download-url="{{ item['original'] }}"><img alt="" src="{{ item['thumb'] }}"/><div class="play-icon"></div></a>
+        {% elif item['type'] == 'photo' %}<a href="{{ item['preview'] }}" data-download-url="{{ item['original'] }}"><img alt="" src="{{ item['thumb'] }}"/></a>
+        {% endif %}{% endfor %}
+    </div>
+
+    <div id="loading-spinner"><span class="loader"></span></div>
+    <script src="{{ url_for('static', filename='lg/lightgallery.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/autoplay/lg-autoplay.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/fullscreen/lg-fullscreen.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/rotate/lg-rotate.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/thumbnail/lg-thumbnail.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/video/lg-video.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='lg/plugins/zoom/lg-zoom.umd.js') }}" type="text/javascript" ></script>
+    <script src="{{ url_for('static', filename='web.js') }}"></script>
+    <script  type='text/javascript'>
+        lgallery.init({{ lgInit | safe }}); // initLightGallery imported from web.js
+        </script>
+</body>
+</html>

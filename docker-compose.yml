@@ -1,0 +1,17 @@
+services:
+  immich-python-proxy:
+    image: ghcr.io/danieltomov/immich-python-proxy:latest
+    container_name: immich-python-proxy
+    restart: always
+    command: "gunicorn -c gunicorn.conf.py app:app"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./environment.py:/src/environment.py:ro
+      - ./gunicorn.conf.py:/src/gunicorn.conf.py:ro
+    #  - ./cert.pem:/src/cert.pem
+    #  - ./key.pem:/src/key.pem
+    healthcheck:
+      test: curl -s http://localhost:3000/share/healthcheck -o /dev/null || exit 1
+      start_period: 30s
+      timeout: 5s
