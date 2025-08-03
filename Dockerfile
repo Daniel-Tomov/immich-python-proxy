@@ -9,4 +9,4 @@ COPY . /src/
 
 EXPOSE 3000
 
-CMD [ "gunicorn", "--bind", "0.0.0.0:3000",  "-w", "4", "--threads", "4" ,"main:http", "--certfile=cert.pem", "--keyfile=key.pem" ]
+CMD [ "gunicorn", "-c", "server/gunicorn.conf.py", "app:app" ]

@@ -3,7 +3,7 @@ services:
     image: ghcr.io/danieltomov/immich-python-proxy:latest
     container_name: immich-python-proxy
     restart: always
-    command: "gunicorn -c gunicorn.conf.py app:app"
+    command: "gunicorn -c server/gunicorn.conf.py app:app"
     ports:
       - "3000:3000"
     volumes:
