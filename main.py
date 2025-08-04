@@ -12,7 +12,7 @@ from flask import (
 )
 from flask_compress import Compress
 
-from utils import error_404, get_url
+from utils import invalidResponse, error_404, get_url
 from share import Share
 from environment import config
 
@@ -42,7 +42,6 @@ class Main:
         )
         self.register_routes()
         Share(self.app)
-        #S(self.app)
         
         #self.app.run(host="0.0.0.0", port=5555, debug=False, use_reloader=False) # development server
 
@@ -56,7 +55,7 @@ class Main:
         @self.app.route("/", methods=["GET"])
         def index():
             if not config['ipp']['showHomePage']:
-                return error_404()
+                return invalidResponse()
             return render_template("index.html")
         
         @self.app.route('/healthcheck', methods=['GET'])
@@ -64,7 +63,7 @@ class Main:
             r = get_url('/api/server/config')
             if r.status_code == 200:
                 return "Success. Immich is reachable."
-            print(f'Got response code {r.status_code} from Immich.')
+            print(f'Error: Got response code {r.status_code} from Immich. Make sure it is online')
             return error_404()
         
         @self.app.errorhandler(404)

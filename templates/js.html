@@ -1,11 +1,15 @@
 <div id="loading-spinner"><span class="loader"></span></div>
-<script src="{{ url_for('static', filename='lg/lightgallery.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/autoplay/lg-autoplay.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/fullscreen/lg-fullscreen.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/rotate/lg-rotate.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/thumbnail/lg-thumbnail.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/video/lg-video.umd.js') }}" type="text/javascript" ></script>
-<script src="{{ url_for('static', filename='lg/plugins/zoom/lg-zoom.umd.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/lightgallery.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/autoplay/lg-autoplay.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/fullscreen/lg-fullscreen.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/rotate/lg-rotate.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/thumbnail/lg-thumbnail.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/video/lg-video.min.js') }}" type="text/javascript" ></script>
+<script src="{{ url_for('static', filename='lg/plugins/zoom/lg-zoom.min.js') }}" type="text/javascript" ></script>
+<script type="text/javascript">
+    // How many thumbnails to load per "page" fetched from Immich
+    const PER_PAGE = {{ items_per_page }};
+</script>
 <script src="{{ url_for('static', filename='web.js') }}"></script>
 <script  type='text/javascript'>
     lgallery.init({{ lgInit | safe }}); // initLightGallery imported from web.js

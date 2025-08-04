@@ -5,15 +5,17 @@ config = {
       "Cache-Control": "public, max-age=2592000",
       "Access-Control-Allow-Origin":  "*"
     },
-    "singleImageGallery": False,
-    "singleItemAutoOpen": True,
-    "downloadOriginalPhoto": True,
-    "allowDownloadAll": 1,
+    "singleImageGallery": False, # TODO
+    "singleItemAutoOpen": True,  # TODO
+    "downloadOriginalPhoto": True, # doesn't matter if lightGallery.download is False or if downloading is diabled in Immich
+    "allowDownloadAll": True,
     "showHomePage": True,
     "showGalleryTitle": True,
     "showGalleryDescription": True,
+    'downloadAllChunkSize': 2**32, # change to bigger value to possibly increase downloadAll speeds
+    'videoChunkSize': 2**11, # change to bigger value if videos buffer 
     "showMetadata": {
-      "description": False
+      "description": False # TODO
     },
     "customInvalidResponse": 'https://google.com'
   },

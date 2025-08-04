@@ -1,6 +1,3 @@
-// How many thumbnails to load per "page" fetched from Immich
-const PER_PAGE = {{ items_per_page }};
-
 class LGallery {
   items;
   lightGallery;
