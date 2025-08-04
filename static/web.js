@@ -1,3 +1,5 @@
+// CHANGED FROM alangrainger/immich-public-proxy: removed PER_PAGE
+
 class LGallery {
   items;
   lightGallery;
@@ -11,13 +13,9 @@ class LGallery {
     // Create the lightGallery instance
     this.element = document.getElementById('lightgallery');
     this.lightGallery = lightGallery(this.element, Object.assign({
-      plugins: [lgZoom, lgThumbnail, lgVideo, lgFullscreen, lgAutoplay, lgRotate],
+      plugins: [lgZoom, lgThumbnail, lgVideo, lgFullscreen, lgAutoplay, lgRotate], // CHANGED FROM alangrainger/immich-public-proxy: added other plugins
       speed: 500,
-      /*
-      This license key was graciously provided by LightGallery under their
-      GPLv3 open-source project license:
-      */
-      licenseKey: '0000-0000-000-0000'
+      licenseKey: '0000-0000-000-0000' // CHANGED FROM alangrainger/immich-public-proxy: default, non-license key for LightGallery
     }, params.lgConfig));
     this.items = params.items;
 
